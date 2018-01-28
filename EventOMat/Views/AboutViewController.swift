@@ -63,7 +63,7 @@ class AboutViewController: UIViewController {
         return iv
     }
 
-    func sponsorTapped(sender: UITapGestureRecognizer) {
+    @objc func sponsorTapped(sender: UITapGestureRecognizer) {
         if let index = sender.view?.tag, index < sponsors.count {
             let sponsorSite = SFSafariViewController(url: sponsors[index].url)
             self.present(sponsorSite, animated: true, completion: nil)

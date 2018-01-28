@@ -102,7 +102,7 @@ class Schedule {
     }
 
     func shouldInclude(item: ScheduleItem, withSearchTerm searchTerm: String) -> Bool {
-        let terms = searchTerm.lowercased().characters.split(separator: " ")
+        let terms = searchTerm.lowercased().split(separator: " ")
         for term in terms {
             if !item.session.lowercased().contains(String(term)) &&
                 !item.room.contains(String(term)) &&

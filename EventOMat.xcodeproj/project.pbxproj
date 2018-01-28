@@ -35,7 +35,7 @@
 		9AE2F0651E5B86D2003A8A10 /* ScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		9AE2F0671E5B8CB8003A8A10 /* schedule.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = schedule.plist; sourceTree = "<group>"; };
 		9AE2F06A1E5B9518003A8A10 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		9AF447C71E4F531A00A445E4 /* EventOMat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = EventOMat.app; path = NERDSummit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AF447C71E4F531A00A445E4 /* NERDSummit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NERDSummit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF447CA1E4F531A00A445E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AF447CC1E4F531A00A445E4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9AF447CF1E4F531A00A445E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		9AF447C81E4F531A00A445E4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AF447C71E4F531A00A445E4 /* EventOMat.app */,
+				9AF447C71E4F531A00A445E4 /* NERDSummit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,7 +138,7 @@
 			);
 			name = EventOMat;
 			productName = EventOMat;
-			productReference = 9AF447C71E4F531A00A445E4 /* EventOMat.app */;
+			productReference = 9AF447C71E4F531A00A445E4 /* NERDSummit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -154,6 +154,7 @@
 					9AF447C61E4F531A00A445E4 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 85H8KB76TX;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -349,7 +350,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loufranco.nerdsummit;
 				PRODUCT_NAME = NERDSummit;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -363,7 +365,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loufranco.nerdsummit;
 				PRODUCT_NAME = NERDSummit;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

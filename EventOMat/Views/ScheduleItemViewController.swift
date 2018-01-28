@@ -19,8 +19,8 @@ class ScheduleItemViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = "\(item.room) @ \(item.startTime):00"
-        let itemText = NSMutableAttributedString(string: item.session + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18)])
-        itemText.append(NSMutableAttributedString(string: Schedule.sessionText(for: item), attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)]))
+        let itemText = NSMutableAttributedString(string: item.session + "\n\n", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
+        itemText.append(NSMutableAttributedString(string: Schedule.sessionText(for: item), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
         textView.isScrollEnabled = false
         textView.attributedText = itemText
     }
