@@ -12,7 +12,8 @@ import SafariServices
 class HomeViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
-
+    @IBOutlet var logoHeightConstraint: NSLayoutConstraint!
+    
     // These are used by the table data source to configure cells.
     var cells: CellViewable!
 
@@ -37,11 +38,23 @@ class HomeViewController: UIViewController {
 
         self.tableView.dataSource = cells
         self.tableView.delegate = cells
+
+        setLogoHeight()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+    }
+
+    private func setLogoHeight() {
+        if #available(iOS 11, *) {
+            logoHeightConstraint.constant = 225 + self.view.safeAreaInsets.top
+        }
+    }
+
+    override func viewSafeAreaInsetsDidChange() {
+        setLogoHeight()
     }
 
     @IBAction func onTapCredits(_ sender: Any) {
