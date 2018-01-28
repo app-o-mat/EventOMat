@@ -21,16 +21,21 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         cells = CellViewable(viewController: self, cells: [[
-            .largeText(text: "March 18th - 19th 2017"),
-            .navigation(text: "Register", imageName: "icon-tickets", navigate: { [weak self] in
-                let ticketSite = SFSafariViewController(url: URL(string: "https://ti.to/nerd/nerd-summit-2017")!)
+            .largeText(text: "March 17th - 18th 2018"),
+//            .navigation(text: "Register", imageName: "icon-tickets", navigate: { [weak self] in
+//                let ticketSite = SFSafariViewController(url: URL(string: "https://ti.to/nerd/nerd-summit-2017")!)
+//                self?.present(ticketSite, animated: true, completion: nil)
+//            }),
+            .navigation(text: "Become a Sponsor", imageName: "icon-tickets", navigate: { [weak self] in
+                let ticketSite = SFSafariViewController(url: URL(string: "https://nerdsummit.wufoo.com/forms/me6zbwa1w6thzw/")!)
                 self?.present(ticketSite, animated: true, completion: nil)
             }),
+
             .navigation(text: "Location", imageName: "icon-location", navigate: { [weak self] in
                 self?.performSegue(withIdentifier: "Location", sender: self)
             }),
-            .navigation(text: "Schedule", imageName: "icon-schedule", navigate: {  [weak self] in
-                self?.performSegue(withIdentifier: "Schedule", sender: self)
+            .navigation(text: "Schedule (coming soon)", imageName: "icon-schedule", navigate: {  [weak self] in
+//                self?.performSegue(withIdentifier: "Schedule", sender: self)
             }),
             .navigation(text: "About us", imageName: "icon-about", navigate: {  [weak self] in
                 self?.performSegue(withIdentifier: "About", sender: self)
