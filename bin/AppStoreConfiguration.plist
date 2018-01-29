@@ -4,9 +4,21 @@
 <dict>
 	<key>method</key>
 	<string>app-store</string>
-	<key>teamID</key>
-	<string>85H8KB76TX</string>
+  
+  <key>provisioningProfiles</key>
+  <dict>
+    <key>com.loufranco.nerdsummit</key>
+    <string>NerdSummit AppStore Profile</string>
+    <key>signingCertificate</key>
+    <string>iOS Distribution</string>
+  </dict>
+
+  <key>signingStyle</key>
+  <string>manual</string>
+  <key>teamID</key>
+  <string>85H8KB76TX</string>
 	<key>uploadBitcode</key>
-	<false/>
+  <false/>
+  
 </dict>
 </plist>
