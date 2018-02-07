@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
                 self?.performSegue(withIdentifier: "Location", sender: self)
             }),
             .navigation(text: "Schedule (coming soon)", imageName: "icon-schedule", navigate: {  [weak self] in
-//                self?.performSegue(withIdentifier: "Schedule", sender: self)
+                self?.performSegue(withIdentifier: "Schedule", sender: self)
             }),
             .navigation(text: "About us", imageName: "icon-about", navigate: {  [weak self] in
                 self?.performSegue(withIdentifier: "About", sender: self)

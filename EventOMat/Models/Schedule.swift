@@ -11,6 +11,7 @@ import UIKit
 
 enum Session: String {
     case beginner
+    case intermediate
     case advanced
     case agile
     case `break`
@@ -25,6 +26,8 @@ enum Session: String {
             return #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
         case .advanced:
             return #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        case .intermediate:
+            return #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         case .panel:
             return #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         case .agile:
@@ -42,12 +45,12 @@ enum Session: String {
 }
 
 struct ScheduleItem {
-    let index: Int
     let session: String
     let room: String
     let startTime: Int
     let type: Session
     let day: String
+    let sessionText: String
 }
 
 class Schedule {
@@ -74,23 +77,59 @@ class Schedule {
             }
     }
 
+    class func makeItemFromJSONObject(obj: Dictionary<String, Any>, for day: String) -> ScheduleItem? {
+        guard let session = obj["name"] as? String,
+            let room = obj["room"] as? String,
+            let startTimeString = (obj["start"] as? String)?.split(separator: ":")[0],
+            let startTime = Int(startTimeString),
+            let typeString = (obj["type"] as? String)?.lowercased(),
+            let sessionText = obj["description"] as? String,
+            let type = Session(rawValue: typeString) else {
+                return nil
+        }
+        return ScheduleItem(session: session, room: room, startTime: startTime, type: type, day: day, sessionText: sessionText)
+    }
+
     class func load() -> [String: [Int: [ScheduleItem]]] {
+        if let path = Bundle.main.path(forResource: "schedule", ofType: "json"),
+            let scheduleData = try? Data(contentsOf: URL(fileURLWithPath: path)),
+            let json = try? JSONSerialization.jsonObject(with: scheduleData, options: []),
+            let scheduleObject = json as? Dictionary<String, Array<Dictionary<String, Any>>> {
+
+            var schedule = [String: [Int: [ScheduleItem]]]()
+
+            let sat = scheduleObject["Saturday"]?.flatMap { obj in
+                return makeItemFromJSONObject(obj: obj, for: "sat")
+            } ?? [ScheduleItem]()
+            schedule["sat"] = items(forDay: "sat", fromItems: sat)
+
+            let sun = scheduleObject["Sunday"]?.flatMap { obj in
+                return makeItemFromJSONObject(obj: obj, for: "sun")
+                } ?? [ScheduleItem]()
+            schedule["sun"] = items(forDay: "sun", fromItems: sun)
+
+            return schedule
+        }
+        return [String: [Int: [ScheduleItem]]]()
+    }
+
+    class func loadPlist() -> [String: [Int: [ScheduleItem]]] {
         if let path = Bundle.main.path(forResource: "schedule", ofType: "plist"),
            let schedulePlist = NSDictionary(contentsOfFile: path) as? [String: Any],
            let schedule = schedulePlist["schedule"] as? [[String: Any]] {
 
             let all = schedule.flatMap{ (d: [String: Any]) -> ScheduleItem? in
                 guard
-                    let index = d["index"] as? Int,
                     let session = d["session"] as? String,
                     let room = d["room"] as? String,
                     let startTime = d["startTime"] as? Int,
                     let typeString = d["type"] as? String,
                     let day = d["day"] as? String,
+                    let sessionText = d["sessiontext"] as? String,
                     let type = Session(rawValue: typeString) else {
                         return nil
                 }
-                return ScheduleItem(index: index, session: session, room: room, startTime: startTime, type: type, day: day)
+                return ScheduleItem(session: session, room: room, startTime: startTime, type: type, day: day, sessionText: sessionText)
             }
 
             var schedule = [String: [Int: [ScheduleItem]]]()
@@ -136,12 +175,7 @@ class Schedule {
     }
 
     class func sessionText(for item: ScheduleItem) -> String {
-        if let path = Bundle.main.path(forResource: "schedule", ofType: "plist"),
-            let schedulePlist = NSDictionary(contentsOfFile: path) as? [String: Any],
-            let schedule = schedulePlist["schedule"] as? [[String: Any]] {
-            return schedule[item.index]["sessiontext"] as? String ?? ""
-        }
-        return ""
+        return item.sessionText
     }
 
 }

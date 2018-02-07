@@ -1,0 +1,60 @@
+{
+    "Saturday": [
+                 {
+                 "name": "Session A",
+                 "start": "10:00AM",
+                 "end": "10:45AM",
+                 "room": "145",
+                 "type": "Beginner",
+                 "speaker": "John Smith",
+                 "description": "Description of session goes here.  Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus."
+                 },
+                 {
+                 "name": "Session B",
+                 "start": "11:00AM",
+                 "end": "11:45PM",
+                 "room": "245",
+                 "type": "Intermediate",
+                 "speaker": "Pete Johnson",
+                 "description": "Description of session goes here.  Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus."
+                 },
+                 {
+                 "name": "Session C",
+                 "start": "1:00PM",
+                 "end": "1:45PM",
+                 "room": "321",
+                 "type": "Advanced",
+                 "speaker": "Sarah Jones",
+                 "description": "Description of session goes here.  Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus."
+                 }
+                 ],
+    "Sunday": [
+               {
+               "name": "Session A",
+               "start": "10:00AM",
+               "end": "10:45AM",
+               "room": "145",
+               "type": "Beginner",
+               "speaker": "John Smith",
+               "description": "Description of session goes here.  Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus."
+               },
+               {
+               "name": "Session B",
+               "start": "11:00AM",
+               "end": "11:45PM",
+               "room": "245",
+               "type": "Intermediate",
+               "speaker": "Pete Johnson",
+               "description": "Description of session goes here.  Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus."
+               },
+               {
+               "name": "Session C",
+               "start": "1:00PM",
+               "end": "1:45PM",
+               "room": "321",
+               "type": "Advanced",
+               "speaker": "Sarah Jones",
+               "description": "Description of session goes here.  Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus."
+               }
+               ]
+}
