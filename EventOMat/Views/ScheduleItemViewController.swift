@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import WebKit
 
 class ScheduleItemViewController: UIViewController {
 
-    @IBOutlet var textView: UITextView!
+    let webView = WKWebView()
 
     // This needs to be set in prepareForSegue of the presenter
     var item: ScheduleItem!
@@ -18,19 +19,23 @@ class ScheduleItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        super.view.addSubview(webView)
+
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.topAnchor.constraint(equalTo: super.topLayoutGuide.bottomAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: super.bottomLayoutGuide.topAnchor).isActive = true
+        webView.leadingAnchor.constraint(equalTo: super.view.leadingAnchor).isActive = true
+        webView.trailingAnchor.constraint(equalTo: super.view.trailingAnchor).isActive = true
+
+
         self.title = "\(item.room) @ \(item.startTime):00"
-        let itemText = NSMutableAttributedString(string: item.session + "\n\n", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
-        itemText.append(NSMutableAttributedString(string: Schedule.sessionText(for: item), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
-        textView.isScrollEnabled = false
-        textView.attributedText = itemText
+
+        webView.scrollView.isScrollEnabled = true
+        let style = "<style>body { font-size: 30pt; margin: 0 20px 0 20px; }</style>"
+        let html = "<html><head>\(style)</head><body><h1>\(item.session)</h1>\(item.sessionText)</body></html>"
+        webView.loadHTMLString(html, baseURL: nil)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
 
-        DispatchQueue.main.async {
-            self.textView.isScrollEnabled = true
-        }
-    }
 
 }

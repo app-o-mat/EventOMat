@@ -57,13 +57,15 @@ class Schedule {
 
     static let sharedInstance = Schedule()
 
-    let items: [String: [Int: [ScheduleItem]]]
+    var items: [String: [Int: [ScheduleItem]]]?
 
     init() {
-        items = Schedule.load()
+        Schedule.load(completion: { (items) in
+            self.items = items
+        })
     }
 
-    class func items(forDay day: String, fromItems items: [ScheduleItem]) -> [Int: [ScheduleItem]] {
+    class func getItems(forDay day: String, fromItems items: [ScheduleItem]) -> [Int: [ScheduleItem]] {
         return items
             .filter({ $0.day == day})
             .reduce([Int: [ScheduleItem]]()) { (groups, item) in
@@ -90,27 +92,69 @@ class Schedule {
         return ScheduleItem(session: session, room: room, startTime: startTime, type: type, day: day, sessionText: sessionText)
     }
 
-    class func load() -> [String: [Int: [ScheduleItem]]] {
-        if let path = Bundle.main.path(forResource: "schedule", ofType: "json"),
-            let scheduleData = try? Data(contentsOf: URL(fileURLWithPath: path)),
-            let json = try? JSONSerialization.jsonObject(with: scheduleData, options: []),
-            let scheduleObject = json as? Dictionary<String, Array<Dictionary<String, Any>>> {
+    class func documentsFolder() -> URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
 
+    class func scheduleFilePath() -> URL {
+        return documentsFolder().appendingPathComponent("schedule.json")
+    }
+
+    class func cacheSchedule(data: Data) {
+        try? data.write(to: scheduleFilePath())
+    }
+
+    class func getCachedSchedule() -> Data? {
+        return try? Data(contentsOf: scheduleFilePath())
+    }
+
+    class func parse(scheduleData: Data) -> [String: [Int: [ScheduleItem]]]? {
+        if let json = try? JSONSerialization.jsonObject(with: scheduleData, options: []),
+            let scheduleObject = json as? Dictionary<String, Array<Dictionary<String, Any>>> {
             var schedule = [String: [Int: [ScheduleItem]]]()
 
             let sat = scheduleObject["Saturday"]?.flatMap { obj in
                 return makeItemFromJSONObject(obj: obj, for: "sat")
-            } ?? [ScheduleItem]()
-            schedule["sat"] = items(forDay: "sat", fromItems: sat)
+                } ?? [ScheduleItem]()
+            schedule["sat"] = getItems(forDay: "sat", fromItems: sat)
 
             let sun = scheduleObject["Sunday"]?.flatMap { obj in
                 return makeItemFromJSONObject(obj: obj, for: "sun")
                 } ?? [ScheduleItem]()
-            schedule["sun"] = items(forDay: "sun", fromItems: sun)
-
+            schedule["sun"] = getItems(forDay: "sun", fromItems: sun)
             return schedule
         }
-        return [String: [Int: [ScheduleItem]]]()
+        return nil
+    }
+
+    class func loadFromCache(completion: @escaping ([String: [Int: [ScheduleItem]]]) -> ()) {
+        if let data = getCachedSchedule(), let schedule = parse(scheduleData: data) {
+            completion(schedule)
+        }
+    }
+
+    class func refresh(completion: @escaping () -> ()) {
+        Schedule.load(completion: { (items) in
+            Schedule.sharedInstance.items = items
+            completion()
+        })
+    }
+
+    class func load(completion: @escaping ([String: [Int: [ScheduleItem]]]) -> ()) {
+        let url = URL(string: "https://nerdsummit.org/data/sessions.json")!
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let scheduleData = data else {
+                loadFromCache(completion: completion)
+                return
+            }
+            if let schedule = parse(scheduleData: scheduleData) {
+                Schedule.cacheSchedule(data: scheduleData)
+                completion(schedule)
+            } else {
+                loadFromCache(completion: completion)
+            }
+        }
+        task.resume()
     }
 
     class func loadPlist() -> [String: [Int: [ScheduleItem]]] {
@@ -133,8 +177,8 @@ class Schedule {
             }
 
             var schedule = [String: [Int: [ScheduleItem]]]()
-            schedule["sat"] = items(forDay: "sat", fromItems: all)
-            schedule["sun"] = items(forDay: "sun", fromItems: all)
+            schedule["sat"] = getItems(forDay: "sat", fromItems: all)
+            schedule["sun"] = getItems(forDay: "sun", fromItems: all)
             return schedule
         }
         return [String: [Int: [ScheduleItem]]]()
@@ -153,7 +197,7 @@ class Schedule {
     }
 
     func itemsGroupedByTimeFiltered(byDay day: String, searchTerm: String? = nil) -> [[ScheduleItem]] {
-        let dayItems = self.items[day] ?? [:];
+        let dayItems = self.items?[day] ?? [:];
 
 
         var groupedItems = [[ScheduleItem]]()

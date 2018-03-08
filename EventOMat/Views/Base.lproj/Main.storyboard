@@ -34,7 +34,7 @@
                                 <rect key="frame" x="0.0" y="225" width="375" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LargeTextCell" rowHeight="88" id="YFp-Xc-Zgj" customClass="LargeTextCell" customModule="NERDSummit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LargeTextCell" rowHeight="88" id="YFp-Xc-Zgj" customClass="LargeTextCell" customModule="NERDSummit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YFp-Xc-Zgj" id="hLC-kL-0Wt">
@@ -59,7 +59,7 @@
                                             <outlet property="label" destination="1eb-uF-7CX" id="aHp-0A-9ux"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NavigationCell" rowHeight="44" id="JKt-9d-PPa" customClass="NavigationCell" customModule="NERDSummit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NavigationCell" rowHeight="44" id="JKt-9d-PPa" customClass="NavigationCell" customModule="NERDSummit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JKt-9d-PPa" id="27S-5c-rVm">
@@ -350,27 +350,9 @@ The parking garage is close to the building, but does cost money. It is however 
                     <view key="view" contentMode="scaleToFill" id="hm3-3b-oLD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d0p-cY-1gZ">
-                                <rect key="frame" x="16" y="0.0" width="343" height="690"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="d0p-cY-1gZ" firstAttribute="leading" secondItem="hm3-3b-oLD" secondAttribute="leadingMargin" id="KYw-7S-39T"/>
-                            <constraint firstItem="d0p-cY-1gZ" firstAttribute="top" secondItem="hm3-3b-oLD" secondAttribute="topMargin" id="Ox6-sL-eze"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="d0p-cY-1gZ" secondAttribute="trailing" id="mdQ-aO-XeO"/>
-                            <constraint firstItem="Kbm-t0-Gbe" firstAttribute="top" secondItem="d0p-cY-1gZ" secondAttribute="bottom" id="t3a-Z6-qPU"/>
-                        </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="textView" destination="d0p-cY-1gZ" id="PHK-2e-6fH"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11j-i0-IBL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -429,13 +411,13 @@ The parking garage is close to the building, but does cost money. It is however 
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Session Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vd6-26-XZw">
-                                                            <rect key="frame" x="46" y="11" width="327" height="78.333333333333329"/>
+                                                            <rect key="frame" x="46" y="11" width="288" height="78.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gB-aF-bgG">
-                                                            <rect key="frame" x="46" y="97.333333333333329" width="327" height="14.333333333333329"/>
+                                                            <rect key="frame" x="46" y="97.333333333333329" width="288" height="14.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>

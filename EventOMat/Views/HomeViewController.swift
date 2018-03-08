@@ -22,19 +22,19 @@ class HomeViewController: UIViewController {
 
         cells = CellViewable(viewController: self, cells: [[
             .largeText(text: "March 17th - 18th 2018"),
-//            .navigation(text: "Register", imageName: "icon-tickets", navigate: { [weak self] in
-//                let ticketSite = SFSafariViewController(url: URL(string: "https://ti.to/nerd/nerd-summit-2017")!)
-//                self?.present(ticketSite, animated: true, completion: nil)
-//            }),
-            .navigation(text: "Become a Sponsor", imageName: "icon-tickets", navigate: { [weak self] in
-                let ticketSite = SFSafariViewController(url: URL(string: "https://nerdsummit.wufoo.com/forms/me6zbwa1w6thzw/")!)
+            .navigation(text: "Register", imageName: "icon-tickets", navigate: { [weak self] in
+                let ticketSite = SFSafariViewController(url: URL(string: "https://ti.to/nerd/nerd-summit-2018")!)
                 self?.present(ticketSite, animated: true, completion: nil)
             }),
+//            .navigation(text: "Become a Sponsor", imageName: "icon-tickets", navigate: { [weak self] in
+//                let ticketSite = SFSafariViewController(url: URL(string: "https://nerdsummit.wufoo.com/forms/me6zbwa1w6thzw/")!)
+//                self?.present(ticketSite, animated: true, completion: nil)
+//            }),
 
             .navigation(text: "Location", imageName: "icon-location", navigate: { [weak self] in
                 self?.performSegue(withIdentifier: "Location", sender: self)
             }),
-            .navigation(text: "Schedule (coming soon)", imageName: "icon-schedule", navigate: {  [weak self] in
+            .navigation(text: "Schedule", imageName: "icon-schedule", navigate: {  [weak self] in
                 self?.performSegue(withIdentifier: "Schedule", sender: self)
             }),
             .navigation(text: "About us", imageName: "icon-about", navigate: {  [weak self] in
@@ -45,6 +45,7 @@ class HomeViewController: UIViewController {
         self.tableView.delegate = cells
 
         setLogoHeight()
+        let _ = Schedule.sharedInstance
     }
 
     override func viewWillAppear(_ animated: Bool) {

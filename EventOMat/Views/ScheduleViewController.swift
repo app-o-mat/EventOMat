@@ -33,6 +33,17 @@ class ScheduleViewController: UIViewController, UISearchBarDelegate {
         self.tableView.estimatedRowHeight = 88
 
         self.searchBar.delegate = self
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: #selector(onRefreshTapped(sender:)))
+    }
+
+
+    @objc func onRefreshTapped(sender: Any?) {
+        Schedule.refresh {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
