@@ -28,11 +28,11 @@ class ScheduleItemViewController: UIViewController {
         webView.trailingAnchor.constraint(equalTo: super.view.trailingAnchor).isActive = true
 
 
-        self.title = "\(item.room) @ \(item.startTime):00"
+        self.title = "\(item.room) @ \(Schedule.formatTime(time: item.startTime))"
 
         webView.scrollView.isScrollEnabled = true
-        let style = "<style>body { font-size: 30pt; margin: 0 20px 0 20px; }</style>"
-        let html = "<html><head>\(style)</head><body><h1>\(item.session)</h1>\(item.sessionText)</body></html>"
+        let style = "<style>body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 30pt; margin: 0 20px 0 20px; }</style>"
+        let html = "<html><head><meta charset=\"utf-8\">\(style)</head><body><h1>\(item.session)</h1><h2>\(item.speaker)</h2>\(item.sessionText)</body></html>"
         webView.loadHTMLString(html, baseURL: nil)
     }
 

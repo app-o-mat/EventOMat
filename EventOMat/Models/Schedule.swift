@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 enum Session: String {
+    case all
     case beginner
     case intermediate
     case advanced
@@ -22,6 +23,8 @@ enum Session: String {
 
     func color() -> UIColor {
         switch self {
+        case .all:
+            return #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         case .beginner:
             return #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
         case .advanced:
@@ -47,17 +50,18 @@ enum Session: String {
 struct ScheduleItem {
     let session: String
     let room: String
-    let startTime: Int
+    let startTime: Double
     let type: Session
     let day: String
     let sessionText: String
+    let speaker: String
 }
 
 class Schedule {
 
     static let sharedInstance = Schedule()
 
-    var items: [String: [Int: [ScheduleItem]]]?
+    var items: [String: [Double: [ScheduleItem]]]?
 
     init() {
         Schedule.load(completion: { (items) in
@@ -65,10 +69,10 @@ class Schedule {
         })
     }
 
-    class func getItems(forDay day: String, fromItems items: [ScheduleItem]) -> [Int: [ScheduleItem]] {
+    class func getItems(forDay day: String, fromItems items: [ScheduleItem]) -> [Double: [ScheduleItem]] {
         return items
             .filter({ $0.day == day})
-            .reduce([Int: [ScheduleItem]]()) { (groups, item) in
+            .reduce([Double: [ScheduleItem]]()) { (groups, item) in
                 var result = groups
                 if let _ = result[item.startTime] {
                     result[item.startTime]?.append(item)
@@ -79,17 +83,42 @@ class Schedule {
             }
     }
 
+    class func formatTime(time: Double) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "H:mm"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: time))
+    }
+
+    class func parseTime(timeString: String) -> Double? {
+        let timeParts = timeString.split(separator: ":")
+        guard timeParts.count == 2 else {
+            return nil
+        }
+        guard let hour = Double(timeParts[0]) else {
+            return nil
+        }
+        let minuteAMPM = String(timeParts[1])
+        let minuteIndex = minuteAMPM.index(minuteAMPM.startIndex, offsetBy: 2)
+        guard let minute = Double(minuteAMPM[..<minuteIndex]) else {
+            return nil
+        }
+        let ampm = minuteAMPM[minuteIndex...]
+
+        return (hour + (ampm.lowercased()=="am" || hour >= 12 ? 0 : 12)) * (60*60) + (minute * 60)
+    }
+
     class func makeItemFromJSONObject(obj: Dictionary<String, Any>, for day: String) -> ScheduleItem? {
         guard let session = obj["name"] as? String,
             let room = obj["room"] as? String,
-            let startTimeString = (obj["start"] as? String)?.split(separator: ":")[0],
-            let startTime = Int(startTimeString),
+            let startString = obj["start"] as? String,
+            let startTime = parseTime(timeString: startString),
             let typeString = (obj["type"] as? String)?.lowercased(),
             let sessionText = obj["description"] as? String,
             let type = Session(rawValue: typeString) else {
                 return nil
         }
-        return ScheduleItem(session: session, room: room, startTime: startTime, type: type, day: day, sessionText: sessionText)
+        return ScheduleItem(session: session, room: room, startTime: startTime, type: type, day: day, sessionText: sessionText, speaker:  obj["speaker"] as? String ?? "")
     }
 
     class func documentsFolder() -> URL {
@@ -108,10 +137,10 @@ class Schedule {
         return try? Data(contentsOf: scheduleFilePath())
     }
 
-    class func parse(scheduleData: Data) -> [String: [Int: [ScheduleItem]]]? {
+    class func parse(scheduleData: Data) -> [String: [Double: [ScheduleItem]]]? {
         if let json = try? JSONSerialization.jsonObject(with: scheduleData, options: []),
             let scheduleObject = json as? Dictionary<String, Array<Dictionary<String, Any>>> {
-            var schedule = [String: [Int: [ScheduleItem]]]()
+            var schedule = [String: [Double: [ScheduleItem]]]()
 
             let sat = scheduleObject["Saturday"]?.flatMap { obj in
                 return makeItemFromJSONObject(obj: obj, for: "sat")
@@ -127,7 +156,7 @@ class Schedule {
         return nil
     }
 
-    class func loadFromCache(completion: @escaping ([String: [Int: [ScheduleItem]]]) -> ()) {
+    class func loadFromCache(completion: @escaping ([String: [Double: [ScheduleItem]]]) -> ()) {
         if let data = getCachedSchedule(), let schedule = parse(scheduleData: data) {
             completion(schedule)
         }
@@ -140,7 +169,7 @@ class Schedule {
         })
     }
 
-    class func load(completion: @escaping ([String: [Int: [ScheduleItem]]]) -> ()) {
+    class func load(completion: @escaping ([String: [Double: [ScheduleItem]]]) -> ()) {
         let url = URL(string: "https://nerdsummit.org/data/sessions.json")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let scheduleData = data else {
@@ -155,33 +184,6 @@ class Schedule {
             }
         }
         task.resume()
-    }
-
-    class func loadPlist() -> [String: [Int: [ScheduleItem]]] {
-        if let path = Bundle.main.path(forResource: "schedule", ofType: "plist"),
-           let schedulePlist = NSDictionary(contentsOfFile: path) as? [String: Any],
-           let schedule = schedulePlist["schedule"] as? [[String: Any]] {
-
-            let all = schedule.flatMap{ (d: [String: Any]) -> ScheduleItem? in
-                guard
-                    let session = d["session"] as? String,
-                    let room = d["room"] as? String,
-                    let startTime = d["startTime"] as? Int,
-                    let typeString = d["type"] as? String,
-                    let day = d["day"] as? String,
-                    let sessionText = d["sessiontext"] as? String,
-                    let type = Session(rawValue: typeString) else {
-                        return nil
-                }
-                return ScheduleItem(session: session, room: room, startTime: startTime, type: type, day: day, sessionText: sessionText)
-            }
-
-            var schedule = [String: [Int: [ScheduleItem]]]()
-            schedule["sat"] = getItems(forDay: "sat", fromItems: all)
-            schedule["sun"] = getItems(forDay: "sun", fromItems: all)
-            return schedule
-        }
-        return [String: [Int: [ScheduleItem]]]()
     }
 
     func shouldInclude(item: ScheduleItem, withSearchTerm searchTerm: String) -> Bool {
@@ -201,10 +203,7 @@ class Schedule {
 
 
         var groupedItems = [[ScheduleItem]]()
-        for time in dayItems.keys.sorted(by: { (a: Int, b: Int) -> Bool in
-            // This treats the time as a clock from 9am - 6pm (e.g. (9+3)%12 is 0, so first in sort)
-            return ((a + 3) % 12) < ((b + 3) % 12)
-        }) {
+        for time in dayItems.keys.sorted() {
             let filteredItems: [ScheduleItem]?
             if let searchTerm = searchTerm, searchTerm != "" {
                 filteredItems = dayItems[time]?.filter({ item -> Bool in

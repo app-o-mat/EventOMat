@@ -64,7 +64,7 @@ class ScheduleViewController: UIViewController, UISearchBarDelegate {
             guard cells.count > 0, case let .schedule(item) = cells[0] else {
                 return ""
             }
-            return "\(item.startTime):00"
+            return "\(Schedule.formatTime(time: item.startTime))"
         })
 
         self.tableView.dataSource = cells
