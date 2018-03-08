@@ -85,7 +85,7 @@ class Schedule {
 
     class func formatTime(time: Double) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "H:mm"
+        dateFormatter.dateFormat = "h:mm a"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         return dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: time))
     }
