@@ -64,8 +64,7 @@ class Schedule {
     var session: URLSession? = nil
     var items: [String: [Double: [ScheduleItem]]]?
 
-    override init() {
-        super.init()
+    init() {
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
         config.urlCache = nil
