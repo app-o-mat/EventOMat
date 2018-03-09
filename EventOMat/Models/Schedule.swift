@@ -61,10 +61,17 @@ class Schedule {
 
     static let sharedInstance = Schedule()
 
+    var session: URLSession? = nil
     var items: [String: [Double: [ScheduleItem]]]?
 
-    init() {
-        Schedule.load(completion: { (items) in
+    override init() {
+        super.init()
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .reloadIgnoringLocalCacheData
+        config.urlCache = nil
+
+        session = URLSession(configuration: config)
+        Schedule.load(session: session, completion: { (items) in
             self.items = items
         })
     }
@@ -163,15 +170,20 @@ class Schedule {
     }
 
     class func refresh(completion: @escaping () -> ()) {
-        Schedule.load(completion: { (items) in
+        Schedule.load(session: Schedule.sharedInstance.session, completion: { (items) in
             Schedule.sharedInstance.items = items
             completion()
         })
     }
 
-    class func load(completion: @escaping ([String: [Double: [ScheduleItem]]]) -> ()) {
+    class func load(session: URLSession?, completion: @escaping ([String: [Double: [ScheduleItem]]]) -> ()) {
+        guard let session = session else {
+            loadFromCache(completion: completion)
+            return
+        }
         let url = URL(string: "https://nerdsummit.org/data/sessions.json")!
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+
+        let task = session.dataTask(with: url) { (data, response, error) in
             guard let scheduleData = data else {
                 loadFromCache(completion: completion)
                 return
