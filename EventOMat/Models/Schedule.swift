@@ -148,12 +148,12 @@ class Schedule {
             let scheduleObject = json as? Dictionary<String, Array<Dictionary<String, Any>>> {
             var schedule = [String: [Double: [ScheduleItem]]]()
 
-            let sat = scheduleObject["Saturday"]?.flatMap { obj in
+            let sat = scheduleObject["Saturday"]?.compactMap { obj in
                 return makeItemFromJSONObject(obj: obj, for: "sat")
                 } ?? [ScheduleItem]()
             schedule["sat"] = getItems(forDay: "sat", fromItems: sat)
 
-            let sun = scheduleObject["Sunday"]?.flatMap { obj in
+            let sun = scheduleObject["Sunday"]?.compactMap { obj in
                 return makeItemFromJSONObject(obj: obj, for: "sun")
                 } ?? [ScheduleItem]()
             schedule["sun"] = getItems(forDay: "sun", fromItems: sun)
