@@ -23,25 +23,25 @@ class AboutViewController: UIViewController {
 //        Sponsor(imageName: "sponsor-massmutual", url: URL(string: "https://www.massmutual.com/")!),
         Sponsor(imageName: "sponsor-lcm", url: URL(string: "https://lastcallmedia.com/")!),
         Sponsor(imageName: "sponsor-cm", url: URL(string: "http://www.commonmedia.com/")!),
-        Sponsor(imageName: "sponsor-umass-cpe", url: URL(string: "https://umass.edu/cpe/nerd")!),
+//        Sponsor(imageName: "sponsor-umass-cpe", url: URL(string: "https://umass.edu/cpe/nerd")!),
 
-        Sponsor(imageName: "sponsor-vidmob", url: URL(string: "https://www.vidmob.com/")!),
+//        Sponsor(imageName: "sponsor-vidmob", url: URL(string: "https://www.vidmob.com/")!),
 
-        Sponsor(imageName: "sponsor-carvio", url: URL(string: "https://carv.launchrock.com/")!),
-        Sponsor(imageName: "sponsor-platformsh", url: URL(string: "https://platform.sh/")!),
+//        Sponsor(imageName: "sponsor-carvio", url: URL(string: "https://carv.launchrock.com/")!),
+//        Sponsor(imageName: "sponsor-platformsh", url: URL(string: "https://platform.sh/")!),
 
 //        Sponsor(imageName: "sponsor-bpu", url: URL(string: "http://www.baypath.edu/academics/graduate-programs")!),
 //        Sponsor(imageName: "sponsor-knectar", url: URL(string: "https://www.knectar.com/")!),
 //        Sponsor(imageName: "sponsor-kayon", url: URL(string: "https://www.kayonaccelerator.com/")!),
 
-        Sponsor(imageName: "sponsor-machinemetrics", url: URL(string: "http://www.machinemetrics.com/")!),
-        Sponsor(imageName: "sponsor-softescu", url: URL(string: "https://softescu.com/")!),
-        Sponsor(imageName: "sponsor-ma", url: URL(string: "http://messageagency.com/")!),
-        Sponsor(imageName: "sponsor-fit", url: URL(string: "http://www.fitstaffingsolutions.com/")!),
-
-        Sponsor(imageName: "sponsor-devup", url: URL(string: "http://www.developingup.com/")!),
-        Sponsor(imageName: "sponsor-opin", url: URL(string: "http://www.opin.ca/en/")!),
-        Sponsor(imageName: "sponsor-redfin", url: URL(string: "https://www.redfin.com/state/Massachusetts")!),
+//        Sponsor(imageName: "sponsor-machinemetrics", url: URL(string: "http://www.machinemetrics.com/")!),
+//        Sponsor(imageName: "sponsor-softescu", url: URL(string: "https://softescu.com/")!),
+//        Sponsor(imageName: "sponsor-ma", url: URL(string: "http://messageagency.com/")!),
+//        Sponsor(imageName: "sponsor-fit", url: URL(string: "http://www.fitstaffingsolutions.com/")!),
+//
+//        Sponsor(imageName: "sponsor-devup", url: URL(string: "http://www.developingup.com/")!),
+//        Sponsor(imageName: "sponsor-opin", url: URL(string: "http://www.opin.ca/en/")!),
+//        Sponsor(imageName: "sponsor-redfin", url: URL(string: "https://www.redfin.com/state/Massachusetts")!),
 //        Sponsor(imageName: "sponsor-acquia", url: URL(string: "https://www.acquia.com/")!),
 //        Sponsor(imageName: "sponsor-optasy", url: URL(string: "https://www.optasy.com/quote?nerd")!),
 //        Sponsor(imageName: "sponsor-dfs", url: URL(string: "https://westernmass.dressforsuccess.org/")!),
