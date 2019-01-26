@@ -1,0 +1,32 @@
+lane :build_appstore do
+
+  xcversion(version: "10.1")
+  gym(
+    scheme: "EventOMat",
+    configuration: "Release",
+    output_directory: "./build/app-store",
+    clean: true,
+    export_options: "./config/AppStoreConfiguration.plist",
+    output_name: "NERDSummit.ipa"
+  )
+
+end
+
+lane :build_adhoc do
+  xcversion(version: "10.1")
+  gym(
+    scheme: "EventOMat",
+    configuration: "Release",
+    output_directory: "./build/ad-hoc",
+    clean: true,
+    export_options: "./config/AdHocConfiguration.plist",
+    output_name: "NERDSummit.ipa"
+  )
+
+end
+
+lane :unit_tests do
+  xcversion(version: "10.1")
+
+  run_tests(scheme: "EventOMat")
+end
