@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hMV-Zx-yxa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hMV-Zx-yxa">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,7 +29,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AKX-Aw-s8i">
-                                <rect key="frame" x="0.0" y="225" width="375" height="549"/>
+                                <rect key="frame" x="0.0" y="225" width="375" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LargeTextCell" rowHeight="88" id="YFp-Xc-Zgj" customClass="LargeTextCell" customModule="NERDSummit" customModuleProvider="target">
@@ -40,7 +40,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Large Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1eb-uF-7CX">
-                                                    <rect key="frame" x="15" y="11" width="384" height="66"/>
+                                                    <rect key="frame" x="15" y="11" width="345" height="66"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -85,7 +85,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App by Lou Franco" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHA-fU-iFq">
-                                <rect key="frame" x="123.33333333333333" y="784" width="128.66666666666669" height="18"/>
+                                <rect key="frame" x="123.33333333333333" y="750" width="128.66666666666669" height="18"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -156,7 +156,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Lq-95-8DN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1rA-6A-a4d">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="951.66666666666663"/>
@@ -280,7 +280,7 @@ The parking garage is close to the building, but does cost money. It is however 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3h-vU-XbQ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-rY-8QJ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="356"/>
@@ -370,17 +370,17 @@ The parking garage is close to the building, but does cost money. It is however 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TiR-Ji-ISM">
-                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UOO-bZ-APw">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9cn-11-m8k">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="48"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="X54-St-Uhs">
-                                                <rect key="frame" x="47" y="10" width="281" height="31"/>
+                                                <rect key="frame" x="47" y="10" width="281" height="29"/>
                                                 <segments>
                                                     <segment title="Saturday"/>
                                                     <segment title="Sunday"/>
@@ -399,7 +399,7 @@ The parking garage is close to the building, but does cost money. It is however 
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="abx-dt-kFE">
-                                        <rect key="frame" x="0.0" y="106" width="375" height="662"/>
+                                        <rect key="frame" x="0.0" y="104" width="375" height="630"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ScheduleCell" id="SBA-Wl-0nr" customClass="ScheduleCell" customModule="NERDSummit" customModuleProvider="target">
@@ -410,13 +410,13 @@ The parking garage is close to the building, but does cost money. It is however 
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Session Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vd6-26-XZw">
-                                                            <rect key="frame" x="46" y="8" width="334" height="81.333333333333329"/>
+                                                            <rect key="frame" x="46" y="8" width="295" height="81.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gB-aF-bgG">
-                                                            <rect key="frame" x="46" y="97.333333333333329" width="334" height="14.333333333333329"/>
+                                                            <rect key="frame" x="46" y="97.333333333333329" width="295" height="14.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -445,8 +445,8 @@ The parking garage is close to the building, but does cost money. It is however 
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="color" destination="lD7-eE-WJN" id="pDC-8N-ZrQ"/>
-                                                    <outlet property="room" destination="0gB-aF-bgG" id="gKJ-uZ-VcF"/>
                                                     <outlet property="session" destination="Vd6-26-XZw" id="JFf-Wk-1qa"/>
+                                                    <outlet property="subtitle" destination="0gB-aF-bgG" id="Urc-9z-HSF"/>
                                                     <segue destination="XcY-mH-hnS" kind="show" id="A2t-Zb-hH2"/>
                                                 </connections>
                                             </tableViewCell>

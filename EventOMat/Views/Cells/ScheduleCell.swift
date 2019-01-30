@@ -11,7 +11,7 @@ import UIKit
 class ScheduleCell: UITableViewCell {
 
     @IBOutlet var session: UILabel!
-    @IBOutlet var room: UILabel!
+    @IBOutlet var subtitle: UILabel!
     @IBOutlet var color: UIView!
 
     override func awakeFromNib() {

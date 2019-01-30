@@ -43,8 +43,8 @@ extension CellType {
         case .schedule(let item):
             guard let cell = cell as? ScheduleCell else { return }
             cell.session.text = item.session
-            cell.room.text = item.room
-            cell.color.backgroundColor = item.type.color()
+            cell.subtitle.text = "\(item.room) / \(item.type)"
+            cell.color.backgroundColor = sessionColor(type: item.type)
         }
     }
 

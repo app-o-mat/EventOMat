@@ -9,52 +9,34 @@
 import Foundation
 import UIKit
 
-enum Session: String {
-    case all
-    case beginner
-    case intermediate
-    case advanced
-    case agile
-    case `break`
-    case drupal
-    case panel
-    case coaching
-    case noncoding
-    case misc
+let colors = [
+    #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1),
+    #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1),
+    #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1),
+    #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1),
+    #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1),
+    #colorLiteral(red: 0.4750122428, green: 0.01646117866, blue: 0, alpha: 1),
+    #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1),
+    #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1),
+    #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1),
+    #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1),
+    #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1),
+    #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1),
+    #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1),
+]
 
-    func color() -> UIColor {
-        switch self {
-        case .all:
-            return #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        case .beginner:
-            return #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
-        case .advanced:
-            return #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-        case .intermediate:
-            return #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        case .panel:
-            return #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-        case .agile:
-            return #colorLiteral(red: 0.4750122428, green: 0.01646117866, blue: 0, alpha: 1)
-        case .`break`:
-            return #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        case .coaching:
-            return #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
-        case .drupal:
-            return #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
-        case .noncoding:
-            return #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
-        case .misc:
-            return #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        }
-    }
+var types = Set<String>()
+
+func sessionColor(type: String) -> UIColor {
+    let index = types.sorted().firstIndex(of: type) ?? 0
+    return colors[index % colors.count]
 }
 
 struct ScheduleItem {
     let session: String
     let room: String
     let startTime: Double
-    let type: Session
+    let type: String
     let day: String
     let sessionText: String
     let speaker: String
@@ -122,11 +104,11 @@ class Schedule {
             let room = obj["room"] as? String,
             let startString = obj["start"] as? String,
             let startTime = parseTime(timeString: startString),
-            let typeString = (obj["type"] as? String)?.lowercased(),
+            let type = (obj["type"] as? String)?.lowercased(),
             let sessionText = obj["description"] as? String else {
                 return nil
         }
-        let type = Session(rawValue: typeString) ?? .misc
+        types.insert(type)
         return ScheduleItem(session: session, room: room, startTime: startTime, type: type, day: day, sessionText: sessionText, speaker:  obj["speaker"] as? String ?? "")
     }
 
@@ -205,7 +187,7 @@ class Schedule {
         for term in terms {
             if !item.session.lowercased().contains(String(term)) &&
                 !item.room.contains(String(term)) &&
-                !item.type.rawValue.contains(String(term)) {
+                !item.type.lowercased().contains(String(term)) {
                 return false
             }
         }
