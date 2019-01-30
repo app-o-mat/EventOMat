@@ -37,8 +37,8 @@ class ScheduleItemViewController: UIViewController, WKNavigationDelegate {
         self.title = "\(item.room) @ \(Schedule.formatTime(time: item.startTime))"
 
         webView.scrollView.isScrollEnabled = true
-        let style = "<style>body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 30pt; margin: 0 20px 0 20px; }</style>"
-        let html = "<html><head><meta charset=\"utf-8\">\(style)</head><body><h1>\(item.session)</h1><h2>\(item.speaker)</h2>\(text)</body></html>"
+        let style = "<style>body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 30pt; margin: 0 20px 0 20px;} .track { color: gray; } h1, h2, h4 { text-align: center; } </style>"
+        let html = "<html><head><meta charset=\"utf-8\">\(style)</head><body><h1>\(item.session)</h1><h2>\(item.speaker)</h2><span>\(text)</span></body><h4 class=\"track\">Track: \(item.type)</h4></html>"
         webView.loadHTMLString(html, baseURL: nil)
     }
 
