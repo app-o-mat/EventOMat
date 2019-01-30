@@ -9,14 +9,19 @@
 import UIKit
 import WebKit
 
-class ScheduleItemViewController: UIViewController {
+class ScheduleItemViewController: UIViewController, WKNavigationDelegate {
 
-    let webView = WKWebView()
+    let config = WKWebViewConfiguration()
+    var webView: WKWebView! = nil
 
     // This needs to be set in prepareForSegue of the presenter
     var item: ScheduleItem!
 
     override func viewDidLoad() {
+        config.dataDetectorTypes = [.link]
+        webView = WKWebView(frame: .zero, configuration: config)
+        webView.navigationDelegate = self
+
         super.viewDidLoad()
 
         super.view.addSubview(webView)
@@ -36,6 +41,14 @@ class ScheduleItemViewController: UIViewController {
         webView.loadHTMLString(html, baseURL: nil)
     }
 
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            decisionHandler(.cancel)
+            return
+        }
+        decisionHandler(.allow)
+    }
 
 
 }
