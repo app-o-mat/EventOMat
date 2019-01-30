@@ -32,12 +32,13 @@ class ScheduleItemViewController: UIViewController, WKNavigationDelegate {
         webView.leadingAnchor.constraint(equalTo: super.view.leadingAnchor).isActive = true
         webView.trailingAnchor.constraint(equalTo: super.view.trailingAnchor).isActive = true
 
+        let text = item.sessionText.replacingOccurrences(of: "\n", with: "<br/>")
 
         self.title = "\(item.room) @ \(Schedule.formatTime(time: item.startTime))"
 
         webView.scrollView.isScrollEnabled = true
         let style = "<style>body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 30pt; margin: 0 20px 0 20px; }</style>"
-        let html = "<html><head><meta charset=\"utf-8\">\(style)</head><body><h1>\(item.session)</h1><h2>\(item.speaker)</h2>\(item.sessionText)</body></html>"
+        let html = "<html><head><meta charset=\"utf-8\">\(style)</head><body><h1>\(item.session)</h1><h2>\(item.speaker)</h2>\(text)</body></html>"
         webView.loadHTMLString(html, baseURL: nil)
     }
 
