@@ -20,6 +20,7 @@ enum Session: String {
     case panel
     case coaching
     case noncoding
+    case misc
 
     func color() -> UIColor {
         switch self {
@@ -43,6 +44,8 @@ enum Session: String {
             return #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
         case .noncoding:
             return #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        case .misc:
+            return #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         }
     }
 }
@@ -120,10 +123,10 @@ class Schedule {
             let startString = obj["start"] as? String,
             let startTime = parseTime(timeString: startString),
             let typeString = (obj["type"] as? String)?.lowercased(),
-            let sessionText = obj["description"] as? String,
-            let type = Session(rawValue: typeString) else {
+            let sessionText = obj["description"] as? String else {
                 return nil
         }
+        let type = Session(rawValue: typeString) ?? .misc
         return ScheduleItem(session: session, room: room, startTime: startTime, type: type, day: day, sessionText: sessionText, speaker:  obj["speaker"] as? String ?? "")
     }
 
