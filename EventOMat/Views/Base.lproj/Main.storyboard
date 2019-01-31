@@ -282,56 +282,72 @@ The parking garage is close to the building, but does cost money. It is however 
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3h-vU-XbQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-rY-8QJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="356"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4DU-EP-Ns2">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="300" translatesAutoresizingMaskIntoConstraints="NO" id="bRO-ZQ-gDy">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-rY-8QJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tiy-9z-lrt">
-                                                        <rect key="frame" x="10" y="40" width="355" height="220"/>
-                                                        <string key="text">NERDs creates positive and supportive learning opportunities for people who work, or want to work in web and related technology. Too many smart, passionate people have been traditionally excluded from tech careers, and we're changing that.</string>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="300" translatesAutoresizingMaskIntoConstraints="NO" id="bRO-ZQ-gDy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tiy-9z-lrt">
+                                                                <rect key="frame" x="25" y="10" width="325" height="280"/>
+                                                                <string key="text">NERDs creates positive and supportive learning opportunities for people who work, or want to work in web and related technology. Too many smart, passionate people have been traditionally excluded from tech careers, and we're changing that.</string>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.41490891575813293" green="0.20832522213459015" blue="0.95304107666015625" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="Tiy-9z-lrt" secondAttribute="trailing" constant="25" id="YKw-hQ-nyL"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Tiy-9z-lrt" secondAttribute="bottom" constant="10" id="Zm6-tu-sCc"/>
+                                                            <constraint firstItem="Tiy-9z-lrt" firstAttribute="top" secondItem="bRO-ZQ-gDy" secondAttribute="top" constant="10" id="hiu-oW-a17"/>
+                                                            <constraint firstItem="Tiy-9z-lrt" firstAttribute="leading" secondItem="bRO-ZQ-gDy" secondAttribute="leading" constant="25" id="pKN-RI-l0T"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YS6-1n-zas">
+                                                        <rect key="frame" x="0.0" y="300" width="375" height="512"/>
+                                                    </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.41490891575813293" green="0.20832522213459015" blue="0.95304107666015625" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstItem="Tiy-9z-lrt" firstAttribute="leading" secondItem="bRO-ZQ-gDy" secondAttribute="leading" constant="10" id="87W-OD-4JV"/>
-                                                    <constraint firstItem="Tiy-9z-lrt" firstAttribute="top" secondItem="bRO-ZQ-gDy" secondAttribute="top" constant="40" id="MTt-ze-Wqw"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Tiy-9z-lrt" secondAttribute="trailing" constant="10" id="dSe-Hs-Trm"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Tiy-9z-lrt" secondAttribute="bottom" constant="40" id="uwB-JE-upn"/>
+                                                    <constraint firstAttribute="trailing" secondItem="YS6-1n-zas" secondAttribute="trailing" id="bzQ-Jj-pPD"/>
+                                                    <constraint firstItem="YS6-1n-zas" firstAttribute="top" secondItem="bRO-ZQ-gDy" secondAttribute="bottom" id="kIu-qc-GjM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="YS6-1n-zas" secondAttribute="bottom" id="qHs-ko-Cwe"/>
+                                                    <constraint firstItem="YS6-1n-zas" firstAttribute="leading" secondItem="OVh-rY-8QJ" secondAttribute="leading" id="rU6-Zo-SiK"/>
                                                 </constraints>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sponsors" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYw-Xb-Zmc">
-                                                <rect key="frame" x="0.0" y="320" width="375" height="36"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            </stackView>
                                         </subviews>
-                                    </stackView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="OVh-rY-8QJ" secondAttribute="bottom" id="4Pm-yn-ypX"/>
+                                            <constraint firstItem="OVh-rY-8QJ" firstAttribute="leading" secondItem="4DU-EP-Ns2" secondAttribute="leading" id="Uts-aP-ta0"/>
+                                            <constraint firstAttribute="trailing" secondItem="OVh-rY-8QJ" secondAttribute="trailing" id="k9p-kZ-EIg"/>
+                                            <constraint firstItem="OVh-rY-8QJ" firstAttribute="top" secondItem="4DU-EP-Ns2" secondAttribute="top" id="pG7-UV-mo5"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="OVh-rY-8QJ" secondAttribute="trailing" id="JHp-qi-hUa"/>
-                                    <constraint firstItem="OVh-rY-8QJ" firstAttribute="centerX" secondItem="P3h-vU-XbQ" secondAttribute="centerX" id="RtL-Ge-e7b"/>
-                                    <constraint firstAttribute="bottom" secondItem="OVh-rY-8QJ" secondAttribute="bottom" id="ZBZ-eN-HMa"/>
-                                    <constraint firstItem="OVh-rY-8QJ" firstAttribute="leading" secondItem="P3h-vU-XbQ" secondAttribute="leading" id="dM1-Ma-PM0"/>
-                                    <constraint firstItem="OVh-rY-8QJ" firstAttribute="top" secondItem="P3h-vU-XbQ" secondAttribute="top" id="eAz-ep-UDX"/>
+                                    <constraint firstItem="4DU-EP-Ns2" firstAttribute="leading" secondItem="P3h-vU-XbQ" secondAttribute="leading" id="9v5-Ps-OHG"/>
+                                    <constraint firstAttribute="trailing" secondItem="4DU-EP-Ns2" secondAttribute="trailing" id="VFg-Fi-JPk"/>
+                                    <constraint firstItem="4DU-EP-Ns2" firstAttribute="top" secondItem="P3h-vU-XbQ" secondAttribute="top" id="dvG-ZF-LmE"/>
+                                    <constraint firstAttribute="bottom" secondItem="4DU-EP-Ns2" secondAttribute="bottom" id="ggV-uA-q56"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mdm-8p-oht" firstAttribute="top" secondItem="P3h-vU-XbQ" secondAttribute="bottom" id="JYJ-66-23R"/>
-                            <constraint firstItem="P3h-vU-XbQ" firstAttribute="leading" secondItem="ohi-4D-who" secondAttribute="leading" id="WlA-t3-Ecs"/>
-                            <constraint firstItem="P3h-vU-XbQ" firstAttribute="top" secondItem="ohi-4D-who" secondAttribute="top" id="aAQ-Sl-Wzc"/>
-                            <constraint firstAttribute="trailing" secondItem="P3h-vU-XbQ" secondAttribute="trailing" id="xvY-Xj-HT4"/>
+                            <constraint firstItem="P3h-vU-XbQ" firstAttribute="top" secondItem="ohi-4D-who" secondAttribute="top" id="34F-23-znK"/>
+                            <constraint firstItem="mdm-8p-oht" firstAttribute="top" secondItem="P3h-vU-XbQ" secondAttribute="bottom" id="KW3-kt-YW7"/>
+                            <constraint firstItem="4DU-EP-Ns2" firstAttribute="width" secondItem="ohi-4D-who" secondAttribute="width" id="MXW-kg-64B"/>
+                            <constraint firstItem="4DU-EP-Ns2" firstAttribute="height" secondItem="ohi-4D-who" secondAttribute="height" priority="250" id="Qr4-6S-0FT"/>
+                            <constraint firstAttribute="trailing" secondItem="P3h-vU-XbQ" secondAttribute="trailing" id="VcM-Ue-ijk"/>
+                            <constraint firstItem="P3h-vU-XbQ" firstAttribute="leading" secondItem="ohi-4D-who" secondAttribute="leading" id="cvT-E9-4df"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="stackView" destination="OVh-rY-8QJ" id="h4R-D2-7gm"/>
+                        <outlet property="stackView" destination="YS6-1n-zas" id="Ayq-K5-dFA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o7x-y4-6XS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -355,7 +371,7 @@ The parking garage is close to the building, but does cost money. It is however 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11j-i0-IBL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2613" y="1039"/>
+            <point key="canvasLocation" x="2974" y="511"/>
         </scene>
         <!--Schedule View Controller-->
         <scene sceneID="0dH-9y-NJL">
