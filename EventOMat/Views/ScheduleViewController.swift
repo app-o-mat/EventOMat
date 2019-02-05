@@ -67,6 +67,10 @@ class ScheduleViewController: UIViewController, UISearchBarDelegate {
             return "\(Schedule.formatTime(time: item.startTime))"
         })
 
+        cells.onScroll = { [weak self] in
+            self?.searchBar.resignFirstResponder()
+        }
+
         self.tableView.dataSource = cells
         self.tableView.delegate = cells
         self.tableView.reloadData()

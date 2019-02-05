@@ -88,6 +88,8 @@ class CellViewable: NSObject, UITableViewDelegate, UITableViewDataSource {
     let viewController: UIViewController
     let cells: [[CellType]]
 
+    var onScroll: (() -> ())?
+
     typealias SectionHeaderFn = (([CellType]) -> String)
     let sectionHeaderForCells: SectionHeaderFn?
 
@@ -135,6 +137,10 @@ class CellViewable: NSObject, UITableViewDelegate, UITableViewDataSource {
 
         // This lets the row get a chance to to redraw and clear the selection if it wishes.
         tableView.reloadRows(at: [didSelectRowAtIndexPath], with: .automatic)
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.onScroll?()
     }
 
 }
