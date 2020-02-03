@@ -23,7 +23,7 @@ class LocationViewController: UIViewController {
 
     func showDirectionsInAppleMaps() {
         guard let url = URL(string: "http://maps.apple.com/?daddr=42.3925089,-72.5249694") else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
     }
 
     @IBAction func tapDirections(sender: UIButton) {
@@ -34,4 +34,9 @@ class LocationViewController: UIViewController {
         showDirectionsInAppleMaps()
     }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

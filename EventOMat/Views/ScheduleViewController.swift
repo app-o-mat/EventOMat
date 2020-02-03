@@ -29,7 +29,7 @@ class ScheduleViewController: UIViewController, UISearchBarDelegate {
         setCellsFromFilter()
 
         // This is how you get table view cells where their constraints determine their height.
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 88
 
         self.searchBar.delegate = self

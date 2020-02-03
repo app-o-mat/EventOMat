@@ -73,11 +73,11 @@ extension CellType {
 
         case .navigation:
             // Navigation cells are the default size.
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
 
         case .schedule:
             // Schedule cells depend on the content of the session text, which is controlled by constraints.
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
     }
 
