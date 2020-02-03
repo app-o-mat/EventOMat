@@ -77,7 +77,7 @@ class ScheduleViewController: UIViewController, UISearchBarDelegate {
     }
 
     func setCellsFromFilter() {
-        let items = schedule.itemsGroupedByTimeFiltered(byDay: ["sat", "sun"][dayPicker.selectedSegmentIndex], searchTerm: self.searchBar.text)
+        let items = schedule.itemsGroupedByTimeFiltered(byDay: ["1", "2"][dayPicker.selectedSegmentIndex], searchTerm: self.searchBar.text)
         setCells(fromScheduleItems: items)
     }
 

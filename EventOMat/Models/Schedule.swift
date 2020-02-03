@@ -94,12 +94,12 @@ class Schedule {
         guard let minute = Double(minuteAMPM[..<minuteIndex]) else {
             return nil
         }
-        let ampm = minuteAMPM[minuteIndex...]
+        let ampm = minuteAMPM[minuteIndex...].trimmingCharacters(in: .whitespaces).lowercased()
 
-        return (hour + (ampm.lowercased()=="am" || hour >= 12 ? 0 : 12)) * (60*60) + (minute * 60)
+        return (hour + (ampm=="am" || hour >= 12 ? 0 : 12)) * (60*60) + (minute * 60)
     }
 
-    class func makeItemFromJSONObject(obj: Dictionary<String, Any>, for day: String) -> ScheduleItem? {
+    class func makeItemFromJSONObject(obj: [String: Any], for day: String) -> ScheduleItem? {
         guard let session = obj["name"] as? String,
             let room = obj["room"] as? String,
             let startString = obj["start"] as? String,
@@ -128,20 +128,94 @@ class Schedule {
         return try? Data(contentsOf: scheduleFilePath())
     }
 
+    struct CellCoord: Hashable {
+        let row: Int
+        let col: Int
+    }
+
+    class func parse(json: Any) -> [String: [[String: Any]]]? {
+        // .feed.entry[0]."gs$cell"
+        guard
+            let jsonDict = json as? [String: Any],
+            let feed = jsonDict["feed"] as? [String: Any],
+            let entries = feed["entry"] as? [Any]
+
+        else { return nil }
+
+        let cells = entries.reduce([CellCoord: [String: Any]]()) { (r, e) -> [CellCoord: [String: Any]] in
+            guard
+                let eDict = e as? [String: Any],
+                let cell = eDict["gs$cell"] as? [String: Any],
+                let rowString = cell["row"] as? String,
+                let row = Int(rowString),
+                let colString = cell["col"] as? String,
+                let col = Int(colString)
+            else { return r }
+
+            return r.merging([CellCoord(row: row, col: col): cell]) { a, _ in return a }
+        }
+
+        func isDay(k:CellCoord, v: [String: Any], day: String) -> Bool {
+            guard
+                k.col == 3,
+                let cellDay = v["inputValue"] as? String,
+                cellDay == day
+            else {
+                return false
+            }
+
+            return true
+        }
+
+        func item(r: Int) -> [String: Any] {
+            let name = cells[CellCoord(row: r, col: 8)]?["inputValue"] as? String ?? ""
+            let room = cells[CellCoord(row: r, col: 6)]?["inputValue"] as? String ?? ""
+            let start = cells[CellCoord(row: r, col: 4)]?["$t"] as? String ?? ""
+            let speaker = cells[CellCoord(row: r, col: 9)]?["inputValue"] as? String ?? ""
+            let type = cells[CellCoord(row: r, col: 7)]?["inputValue"] as? String ?? ""
+            let desc = cells[CellCoord(row: r, col: 10)]?["inputValue"] as? String ?? ""
+
+            return [
+                "name": name,
+                "room": room,
+                "start": start,
+                "speaker": speaker,
+                "type": type,
+                "description": desc,
+            ]
+        }
+
+        let day1Rows = cells.filter { (k, v) in isDay(k: k, v: v, day: "1") }.map { $0.key.row }
+        let day1Dicts = day1Rows.map(item)
+
+        let day2Rows = cells.filter { (k, v) in isDay(k: k, v: v, day: "2") }.map { $0.key.row }
+        let day2Dicts = day2Rows.map(item)
+
+        print("day1Rows: \(day1Rows.count)")
+        print("day2Rows: \(day2Rows.count)")
+
+        return [
+            "1": day1Dicts,
+            "2": day2Dicts,
+        ]
+    }
+
     class func parse(scheduleData: Data) -> [String: [Double: [ScheduleItem]]]? {
         if let json = try? JSONSerialization.jsonObject(with: scheduleData, options: []),
-            let scheduleObject = json as? Dictionary<String, Array<Dictionary<String, Any>>> {
+            let scheduleObject = parse(json: json)
+             {
+
             var schedule = [String: [Double: [ScheduleItem]]]()
 
-            let sat = scheduleObject["Saturday"]?.compactMap { obj in
-                return makeItemFromJSONObject(obj: obj, for: "sat")
+            let sat = scheduleObject["1"]?.compactMap { obj in
+                return makeItemFromJSONObject(obj: obj, for: "1")
                 } ?? [ScheduleItem]()
-            schedule["sat"] = getItems(forDay: "sat", fromItems: sat)
+            schedule["1"] = getItems(forDay: "1", fromItems: sat)
 
-            let sun = scheduleObject["Sunday"]?.compactMap { obj in
-                return makeItemFromJSONObject(obj: obj, for: "sun")
+            let sun = scheduleObject["2"]?.compactMap { obj in
+                return makeItemFromJSONObject(obj: obj, for: "2")
                 } ?? [ScheduleItem]()
-            schedule["sun"] = getItems(forDay: "sun", fromItems: sun)
+            schedule["2"] = getItems(forDay: "2", fromItems: sun)
             return schedule
         }
         return nil
@@ -165,7 +239,7 @@ class Schedule {
             loadFromCache(completion: completion)
             return
         }
-        let url = URL(string: "https://nerdsummit.org/data/sessions.json")!
+        let url = URL(string: "https://spreadsheets.google.com/feeds/cells/17EDt6Pu6xefcwT2C1UsYB7m0Ek-Vb1Us8Azfn3a_eso/1/public/full?alt=json")!
 
         let task = session.dataTask(with: url) { (data, response, error) in
             guard let scheduleData = data else {
@@ -187,6 +261,7 @@ class Schedule {
         for term in terms {
             if !item.session.lowercased().contains(String(term)) &&
                 !item.room.contains(String(term)) &&
+                !item.speaker.lowercased().contains(String(term)) &&
                 !item.type.lowercased().contains(String(term)) {
                 return false
             }
