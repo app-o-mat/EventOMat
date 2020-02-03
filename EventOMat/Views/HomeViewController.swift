@@ -21,9 +21,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         cells = CellViewable(viewController: self, cells: [[
-            .largeText(text: "March 9th - 10th 2019"),
+            .largeText(text: "March 20/21, 2020"),
             .navigation(text: "Register", imageName: "icon-tickets", navigate: { [weak self] in
-                let ticketSite = SFSafariViewController(url: URL(string: "https://ti.to/nerd/nerd-summit-2019")!)
+                let ticketSite = SFSafariViewController(url: URL(string: "https://ti.to/nerd/nerd-summit-2020")!)
                 self?.present(ticketSite, animated: true, completion: nil)
             }),
 //            .navigation(text: "Become a Sponsor", imageName: "icon-tickets", navigate: { [weak self] in
