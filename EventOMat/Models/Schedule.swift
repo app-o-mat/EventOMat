@@ -185,10 +185,10 @@ class Schedule {
             ]
         }
 
-        let day1Rows = cells.filter { (k, v) in isDay(k: k, v: v, day: "1") }.map { $0.key.row }
+        let day1Rows = cells.filter { (k, v) in isDay(k: k, v: v, day: "1") }.map { $0.key.row }.sorted()
         let day1Dicts = day1Rows.map(item)
 
-        let day2Rows = cells.filter { (k, v) in isDay(k: k, v: v, day: "2") }.map { $0.key.row }
+        let day2Rows = cells.filter { (k, v) in isDay(k: k, v: v, day: "2") }.map { $0.key.row }.sorted()
         let day2Dicts = day2Rows.map(item)
 
         print("day1Rows: \(day1Rows.count)")
