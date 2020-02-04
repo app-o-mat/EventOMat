@@ -132,11 +132,6 @@ class Schedule {
         return try? Data(contentsOf: scheduleFilePath())
     }
 
-    struct CellCoord: Hashable {
-        let row: Int
-        let col: Int
-    }
-
     class func parse(json: Any) -> [String: [[String: Any]]]? {
         // .feed.entry[0]."gs$cell"
         guard

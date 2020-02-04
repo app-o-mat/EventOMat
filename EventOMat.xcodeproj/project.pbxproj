@@ -10,6 +10,7 @@
 		9A1782B71E637DDD0083CA58 /* ScheduleItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1782B61E637DDD0083CA58 /* ScheduleItemViewController.swift */; };
 		9A1782B91E643A7C0083CA58 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1782B81E643A7C0083CA58 /* AboutViewController.swift */; };
 		9A4863E0220272160001AF2E /* Sponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4863DF220272160001AF2E /* Sponsor.swift */; };
+		9AAB9CF723E8F226005AC673 /* CellCoord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB9CF623E8F226005AC673 /* CellCoord.swift */; };
 		9AE2F05E1E4FC891003A8A10 /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE2F05D1E4FC891003A8A10 /* CellType.swift */; };
 		9AE2F0601E579EBE003A8A10 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE2F05F1E579EBE003A8A10 /* LocationViewController.swift */; };
 		9AE2F0621E57A97C003A8A10 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE2F0611E57A97C003A8A10 /* UINavigationController+Extensions.swift */; };
@@ -29,6 +30,7 @@
 		9A1782B61E637DDD0083CA58 /* ScheduleItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleItemViewController.swift; sourceTree = "<group>"; };
 		9A1782B81E643A7C0083CA58 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		9A4863DF220272160001AF2E /* Sponsor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sponsor.swift; sourceTree = "<group>"; };
+		9AAB9CF623E8F226005AC673 /* CellCoord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCoord.swift; sourceTree = "<group>"; };
 		9AE2F05D1E4FC891003A8A10 /* CellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
 		9AE2F05F1E579EBE003A8A10 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		9AE2F0611E57A97C003A8A10 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			children = (
 				9AE2F06A1E5B9518003A8A10 /* Schedule.swift */,
 				9A4863DF220272160001AF2E /* Sponsor.swift */,
+				9AAB9CF623E8F226005AC673 /* CellCoord.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				9AF447CB1E4F531A00A445E4 /* AppDelegate.swift in Sources */,
 				9A4863E0220272160001AF2E /* Sponsor.swift in Sources */,
 				9AE2F0641E5B79D2003A8A10 /* ScheduleViewController.swift in Sources */,
+				9AAB9CF723E8F226005AC673 /* CellCoord.swift in Sources */,
 				9AE2F0661E5B86D2003A8A10 /* ScheduleCell.swift in Sources */,
 				9AE2F0601E579EBE003A8A10 /* LocationViewController.swift in Sources */,
 				9A1782B91E643A7C0083CA58 /* AboutViewController.swift in Sources */,
