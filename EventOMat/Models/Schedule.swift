@@ -36,6 +36,7 @@ struct ScheduleItem {
     let session: String
     let room: String
     let startTime: Double
+    let endTime: Double?
     let type: String
     let day: String
     let sessionText: String
@@ -81,7 +82,8 @@ class Schedule {
         return dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: time))
     }
 
-    class func parseTime(timeString: String) -> Double? {
+    class func parseTime(timeString: String?) -> Double? {
+        guard let timeString = timeString else { return nil }
         let timeParts = timeString.split(separator: ":")
         guard timeParts.count == 2 else {
             return nil
@@ -108,8 +110,10 @@ class Schedule {
             let sessionText = obj["description"] as? String else {
                 return nil
         }
+        let endString = obj["end"] as? String
+        let endTime = parseTime(timeString: endString)
         types.insert(type)
-        return ScheduleItem(session: session, room: room, startTime: startTime, type: type, day: day, sessionText: sessionText, speaker:  obj["speaker"] as? String ?? "")
+        return ScheduleItem(session: session, room: room, startTime: startTime, endTime: endTime, type: type, day: day, sessionText: sessionText, speaker:  obj["speaker"] as? String ?? "")
     }
 
     class func documentsFolder() -> URL {
@@ -171,6 +175,7 @@ class Schedule {
             let name = cells[CellCoord(row: r, col: 8)]?["inputValue"] as? String ?? ""
             let room = cells[CellCoord(row: r, col: 6)]?["inputValue"] as? String ?? ""
             let start = cells[CellCoord(row: r, col: 4)]?["$t"] as? String ?? ""
+            let end = cells[CellCoord(row: r, col: 5)]?["$t"] as? String ?? ""
             let speaker = cells[CellCoord(row: r, col: 9)]?["inputValue"] as? String ?? ""
             let type = cells[CellCoord(row: r, col: 7)]?["inputValue"] as? String ?? ""
             let desc = cells[CellCoord(row: r, col: 10)]?["inputValue"] as? String ?? ""
@@ -179,6 +184,7 @@ class Schedule {
                 "name": name,
                 "room": room,
                 "start": start,
+                "end": end,
                 "speaker": speaker,
                 "type": type,
                 "description": desc,
