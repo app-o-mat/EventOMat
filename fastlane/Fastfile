@@ -1,6 +1,6 @@
 lane :build_appstore do
 
-  xcversion(version: "10.1")
+  xcversion(version: "11.3.1")
   gym(
     scheme: "EventOMat",
     configuration: "Release",
@@ -13,7 +13,7 @@ lane :build_appstore do
 end
 
 lane :build_adhoc do
-  xcversion(version: "10.1")
+  xcversion(version: "11.3.1")
   gym(
     scheme: "EventOMat",
     configuration: "Release",
@@ -26,7 +26,15 @@ lane :build_adhoc do
 end
 
 lane :unit_tests do
-  xcversion(version: "10.1")
+  xcversion(version: "11.3.1")
 
   run_tests(scheme: "EventOMat")
+end
+
+lane :upload_binary do
+  upload_to_testflight(
+    username: "lfranco@greenwave-solutions.com",
+    ipa: "./build/app-store/NERDSummit.ipa",
+    team_id: "159005"
+  )
 end
