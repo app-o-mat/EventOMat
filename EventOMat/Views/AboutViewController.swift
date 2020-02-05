@@ -70,9 +70,9 @@ class AboutViewController: UIViewController {
 
     func makeSponsorView(from sponsor: Sponsor) -> UIView {
         let iv = UIImageView()
-        iv.contentMode = .center
+        iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        guard let url = URL(string: "https://nerdsummit.org/images/\(sponsor.logo)") else {
+        guard let url = URL(string: sponsor.logo) else {
             return iv
         }
 
