@@ -1,6 +1,6 @@
 lane :build_appstore do
 
-  xcversion(version: "11.3.1")
+  xcversion(version: "12.4")
   gym(
     scheme: "EventOMat",
     configuration: "Release",
@@ -13,7 +13,7 @@ lane :build_appstore do
 end
 
 lane :build_adhoc do
-  xcversion(version: "11.3.1")
+  xcversion(version: "12.4")
   gym(
     scheme: "EventOMat",
     configuration: "Release",
@@ -26,7 +26,7 @@ lane :build_adhoc do
 end
 
 lane :unit_tests do
-  xcversion(version: "11.3.1")
+  xcversion(version: "12.4")
 
   run_tests(scheme: "EventOMat")
 end
