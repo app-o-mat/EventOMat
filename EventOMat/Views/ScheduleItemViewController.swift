@@ -27,8 +27,8 @@ class ScheduleItemViewController: UIViewController, WKNavigationDelegate {
         super.view.addSubview(webView)
 
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.topAnchor.constraint(equalTo: super.topLayoutGuide.bottomAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: super.bottomLayoutGuide.topAnchor).isActive = true
+        webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         webView.leadingAnchor.constraint(equalTo: super.view.leadingAnchor).isActive = true
         webView.trailingAnchor.constraint(equalTo: super.view.trailingAnchor).isActive = true
 
