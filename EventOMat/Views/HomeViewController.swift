@@ -21,9 +21,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         cells = CellViewable(viewController: self, cells: [[
-            .largeText(text: "March 20/21, 2020"),
+            .largeText(text: "March 19-21, 2021"),
             .navigation(text: "Register", imageName: "icon-tickets", navigate: { [weak self] in
-                let ticketSite = SFSafariViewController(url: URL(string: "https://ti.to/nerd/nerd-summit-2020")!)
+                let ticketSite = SFSafariViewController(url: URL(string: "https://ti.to/nerd/nerd-summit-2021")!)
                 self?.present(ticketSite, animated: true, completion: nil)
             }),
 //            .navigation(text: "Become a Sponsor", imageName: "icon-tickets", navigate: { [weak self] in
@@ -31,9 +31,9 @@ class HomeViewController: UIViewController {
 //                self?.present(ticketSite, animated: true, completion: nil)
 //            }),
 
-            .navigation(text: "Location", imageName: "icon-location", navigate: { [weak self] in
-                self?.performSegue(withIdentifier: "Location", sender: self)
-            }),
+//            .navigation(text: "Location", imageName: "icon-location", navigate: { [weak self] in
+//                self?.performSegue(withIdentifier: "Location", sender: self)
+//            }),
             .navigation(text: "Schedule", imageName: "icon-schedule", navigate: {  [weak self] in
                 self?.performSegue(withIdentifier: "Schedule", sender: self)
             }),
