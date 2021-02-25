@@ -2,7 +2,7 @@ lane :build_appstore do
 
   xcversion(version: "12.4")
   gym(
-    scheme: "EventOMat",
+    scheme: "NerdSummit",
     configuration: "Release",
     output_directory: "./build/app-store",
     clean: true,
@@ -15,7 +15,7 @@ end
 lane :build_adhoc do
   xcversion(version: "12.4")
   gym(
-    scheme: "EventOMat",
+    scheme: "NerdSummit",
     configuration: "Release",
     output_directory: "./build/ad-hoc",
     clean: true,
@@ -28,7 +28,7 @@ end
 lane :unit_tests do
   xcversion(version: "12.4")
 
-  run_tests(scheme: "EventOMat")
+  run_tests(scheme: "NerdSummit")
 end
 
 lane :upload_binary do

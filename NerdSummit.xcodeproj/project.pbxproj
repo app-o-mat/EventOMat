@@ -72,7 +72,7 @@
 		9AF447BE1E4F531A00A445E4 = {
 			isa = PBXGroup;
 			children = (
-				9AF447C91E4F531A00A445E4 /* EventOMat */,
+				9AF447C91E4F531A00A445E4 /* NerdSummit */,
 				9AF447C81E4F531A00A445E4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,7 +85,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AF447C91E4F531A00A445E4 /* EventOMat */ = {
+		9AF447C91E4F531A00A445E4 /* NerdSummit */ = {
 			isa = PBXGroup;
 			children = (
 				9AE2F0691E5B94E3003A8A10 /* Models */,
@@ -95,7 +95,7 @@
 				9AF447D61E4F531A00A445E4 /* Info.plist */,
 				9AF447D31E4F531A00A445E4 /* LaunchScreen.storyboard */,
 			);
-			path = EventOMat;
+			path = NerdSummit;
 			sourceTree = "<group>";
 		};
 		9AF447F81E4F67E900A445E4 /* Views */ = {
@@ -127,9 +127,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9AF447C61E4F531A00A445E4 /* EventOMat */ = {
+		9AF447C61E4F531A00A445E4 /* NerdSummit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AF447EF1E4F531B00A445E4 /* Build configuration list for PBXNativeTarget "EventOMat" */;
+			buildConfigurationList = 9AF447EF1E4F531B00A445E4 /* Build configuration list for PBXNativeTarget "NerdSummit" */;
 			buildPhases = (
 				9AF447C31E4F531A00A445E4 /* Sources */,
 				9AF447C41E4F531A00A445E4 /* Frameworks */,
@@ -139,7 +139,7 @@
 			);
 			dependencies = (
 			);
-			name = EventOMat;
+			name = NerdSummit;
 			productName = EventOMat;
 			productReference = 9AF447C71E4F531A00A445E4 /* NERDSummit.app */;
 			productType = "com.apple.product-type.application";
@@ -162,7 +162,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9AF447C21E4F531A00A445E4 /* Build configuration list for PBXProject "EventOMat" */;
+			buildConfigurationList = 9AF447C21E4F531A00A445E4 /* Build configuration list for PBXProject "NerdSummit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -175,7 +175,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9AF447C61E4F531A00A445E4 /* EventOMat */,
+				9AF447C61E4F531A00A445E4 /* NerdSummit */,
 			);
 		};
 /* End PBXProject section */
@@ -358,7 +358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 85H8KB76TX;
-				INFOPLIST_FILE = EventOMat/Info.plist;
+				INFOPLIST_FILE = NerdSummit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loufranco.nerdsummit;
@@ -374,7 +374,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 85H8KB76TX;
-				INFOPLIST_FILE = EventOMat/Info.plist;
+				INFOPLIST_FILE = NerdSummit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loufranco.nerdsummit;
@@ -387,7 +387,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9AF447C21E4F531A00A445E4 /* Build configuration list for PBXProject "EventOMat" */ = {
+		9AF447C21E4F531A00A445E4 /* Build configuration list for PBXProject "NerdSummit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AF447ED1E4F531B00A445E4 /* Debug */,
@@ -396,7 +396,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AF447EF1E4F531B00A445E4 /* Build configuration list for PBXNativeTarget "EventOMat" */ = {
+		9AF447EF1E4F531B00A445E4 /* Build configuration list for PBXNativeTarget "NerdSummit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AF447F01E4F531B00A445E4 /* Debug */,
