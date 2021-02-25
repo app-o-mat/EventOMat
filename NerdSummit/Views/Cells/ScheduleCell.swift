@@ -1,6 +1,6 @@
 //
 //  ScheduleCell.swift
-//  EventOMat
+//  NerdSummit
 //
 //  Created by Louis Franco on 2/20/17.
 //  Copyright © 2017 Lou Franco. All rights reserved.

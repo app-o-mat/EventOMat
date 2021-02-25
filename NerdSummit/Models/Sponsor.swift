@@ -1,6 +1,6 @@
 //
 //  Sponsor.swift
-//  EventOMat
+//  NerdSummit
 //
 //  Created by Louis Franco on 1/30/19.
 //  Copyright © 2019 Lou Franco. All rights reserved.

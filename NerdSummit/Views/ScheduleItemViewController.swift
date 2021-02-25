@@ -1,6 +1,6 @@
 //
 //  ScheduleItemViewController.swift
-//  EventOMat
+//  NerdSummit
 //
 //  Created by Louis Franco on 2/26/17.
 //  Copyright © 2017 Lou Franco. All rights reserved.
