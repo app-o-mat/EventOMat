@@ -240,7 +240,7 @@ class Schedule {
             loadFromCache(completion: completion)
             return
         }
-        let url = URL(string: "https://spreadsheets.google.com/feeds/cells/17EDt6Pu6xefcwT2C1UsYB7m0Ek-Vb1Us8Azfn3a_eso/1/public/full?alt=json")!
+        let url = URL(string: "https://spreadsheets.google.com/feeds/cells/1J26Xaz21Kdo9mnlT2kbjcOf2Ce11kopnRUFZrWRRpAA/1/public/full?alt=json")!
 
         let task = session.dataTask(with: url) { (data, response, error) in
             guard let scheduleData = data else {

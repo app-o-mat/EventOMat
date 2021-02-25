@@ -135,7 +135,7 @@ class Sponsors {
             loadFromCache(completion: completion)
             return
         }
-        let url = URL(string: "https://spreadsheets.google.com/feeds/cells/1_eUwlDMFUI8dX_5R-ZEs32ze-4NwkNoO9X8CkX-riOk/1/public/full?alt=json")!
+        let url = URL(string: "https://spreadsheets.google.com/feeds/cells/1l3X5uS41jpjPzqknGXwgRof_crxdvTqXwd549bKPTtc/1/public/full?alt=json")!
 
         let task = session.dataTask(with: url) { (data, response, error) in
             guard let sponsorsData = data else {
