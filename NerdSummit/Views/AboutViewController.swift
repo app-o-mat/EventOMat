@@ -68,6 +68,15 @@ class AboutViewController: UIViewController {
         return l
     }
 
+    // https://stackoverflow.com/a/24498221/3937
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+
     func makeSponsorView(from sponsor: Sponsor) -> UIView {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -87,9 +96,15 @@ class AboutViewController: UIViewController {
             else {
                 return
             }
-            DispatchQueue.main.async { [weak iv] in
-                guard let iv = iv else { return }
-                iv.image = UIImage(data: imageData)
+            DispatchQueue.main.async { [weak iv, weak self] in
+                guard let iv = iv, let sself = self else { return }
+                guard let image = UIImage(data: imageData) else {
+                    return
+                }
+                let width = sself.view.frame.width
+                let height = image.size.height / image.size.width * width
+
+                iv.image = sself.imageWithImage(image: image, scaledToSize: CGSize(width: width, height: height))
                 iv.setNeedsLayout()
             }
 
