@@ -40,6 +40,8 @@ struct ScheduleItem {
     let type: String
     let day: String
     let sessionText: String
+    let color: UIColor
+    let joinLink: URL?
     let speaker: String
 }
 
@@ -107,13 +109,14 @@ class Schedule {
             let startString = obj["start"] as? String,
             let startTime = parseTime(timeString: startString),
             let type = (obj["type"] as? String)?.lowercased(),
-            let sessionText = obj["description"] as? String else {
+            let sessionText = obj["description"] as? String,
+            let color = obj["color"] as? UIColor else {
                 return nil
         }
         let endString = obj["end"] as? String
         let endTime = parseTime(timeString: endString)
         types.insert(type)
-        return ScheduleItem(session: session, room: room, startTime: startTime, endTime: endTime, type: type, day: day, sessionText: sessionText, speaker:  obj["speaker"] as? String ?? "")
+        return ScheduleItem(session: session, room: room, startTime: startTime, endTime: endTime, type: type, day: day, sessionText: sessionText, color: color, joinLink: obj["link"] as? URL, speaker: obj["speaker"] as? String ?? "")
     }
 
     class func documentsFolder() -> URL {
@@ -166,14 +169,30 @@ class Schedule {
             return true
         }
 
+        func eventColor(from string: String) -> UIColor {
+            switch string.lowercased().trimmingCharacters(in: .whitespaces) {
+            case "red": return #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            case "blue": return #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+            case "purple": return #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+            case "orange": return #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+            case "green": return #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
+            case "brown": return .brown
+            case "yellow": return #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
+            default:
+                return #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            }
+        }
+
         func item(r: Int) -> [String: Any] {
             let name = cells[CellCoord(row: r, col: 8)]?["inputValue"] as? String ?? ""
-            let room = cells[CellCoord(row: r, col: 6)]?["inputValue"] as? String ?? ""
+            let room = ""
             let start = cells[CellCoord(row: r, col: 4)]?["$t"] as? String ?? ""
             let end = cells[CellCoord(row: r, col: 5)]?["$t"] as? String ?? ""
             let speaker = cells[CellCoord(row: r, col: 9)]?["inputValue"] as? String ?? ""
             let type = cells[CellCoord(row: r, col: 7)]?["inputValue"] as? String ?? ""
             let desc = cells[CellCoord(row: r, col: 10)]?["inputValue"] as? String ?? ""
+            let color = cells[CellCoord(row: r, col: 14)]?["inputValue"] as? String ?? ""
+            let link = cells[CellCoord(row: r, col: 15)]?["inputValue"] as? String ?? ""
 
             return [
                 "name": name,
@@ -183,6 +202,8 @@ class Schedule {
                 "speaker": speaker,
                 "type": type,
                 "description": desc,
+                "color": eventColor(from: color),
+                "link": URL(string: link) as Any
             ]
         }
 

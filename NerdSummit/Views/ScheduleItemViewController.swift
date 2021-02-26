@@ -41,6 +41,18 @@ class ScheduleItemViewController: UIViewController, WKNavigationDelegate {
         let track = (item.type != "") ? "<h4 class=\"track\">Track: \(item.type)</h4>" : ""
         let html = "<html><head><meta charset=\"utf-8\">\(style)</head><body><h1>\(item.session)</h1><h2>\(item.speaker)</h2><span>\(text)</span></body>\(track)</html>"
         webView.loadHTMLString(html, baseURL: nil)
+
+        if let _ = item.joinLink {
+            let btn = UIBarButtonItem(title: "Join", style: .plain, target: self, action: #selector(join(sender:)))
+            self.navigationItem.rightBarButtonItems = [btn]
+        }
+    }
+
+    @objc func join(sender: Any) {
+        guard let joinLink = item.joinLink else {
+            return
+        }
+        UIApplication.shared.open(joinLink, options: [:], completionHandler: nil)
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
